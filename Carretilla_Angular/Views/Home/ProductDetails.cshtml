@@ -1,0 +1,19 @@
+﻿<hr class="featurette-divider">
+
+<div class="row featurette">
+    <div class="col-md-7">
+        <h2 class="featurette-heading">{{producto.Descripcion}}.</h2>
+        <ul>
+            <li>Precio: Q {{producto.PrecioQuetzales}}</li>
+            <li><span class="categoria-{{producto.categoriaProducto}}">{{producto.categoriaProducto}}</span></li>
+            <li>{{producto.enPromocion}}</li>
+        </ul>
+    </div>
+    <div class="col-md-5">
+        <img  class="featurette-image img-responsive center-block" src="~/images/test.png" height="500px" width="500px" alt="Generic placeholder image">
+    </div>
+    <a class="pull-left boton" ng-click="backUrl()">Regresar</a>
+
+</div>
+
+<hr class="featurette-divider">

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarretillaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Carretilla">
+    <Key>
+      <PropertyRef Name="idCarretilla" />
+    </Key>
+    <Property Name="idCarretilla" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="totalProductos" Type="int" Nullable="false" />
+    <Property Name="fechaCreacion" Type="datetime" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="categoriaProducto">
+    <Key>
+      <PropertyRef Name="idCategoriaProducto" />
+    </Key>
+    <Property Name="idCategoriaProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="detalleCarretilla">
+    <Key>
+      <PropertyRef Name="idDetalleCarretilla" />
+    </Key>
+    <Property Name="idDetalleCarretilla" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idCarretilla" Type="int" Nullable="false" />
+    <Property Name="idProducto" Type="int" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="idProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idCategoriaProducto" Type="int" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="slug" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="precioQuetzales" Type="float" Nullable="false" />
+    <Property Name="precioDolares" Type="float" Nullable="false" />
+    <Property Name="Existencia" Type="int" Nullable="false" />
+    <Property Name="enPromocion" Type="bit" Nullable="false" />
+    <Property Name="Estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Producto__idCate__24927208">
+    <End Role="categoriaProducto" Type="Self.categoriaProducto" Multiplicity="1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categoriaProducto">
+        <PropertyRef Name="idCategoriaProducto" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="idCategoriaProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_carretilla">
+    <End Role="Carretilla" Type="Self.Carretilla" Multiplicity="1" />
+    <End Role="detalleCarretilla" Type="Self.detalleCarretilla" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carretilla">
+        <PropertyRef Name="idCarretilla" />
+      </Principal>
+      <Dependent Role="detalleCarretilla">
+        <PropertyRef Name="idCarretilla" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_productoCarretilla">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="detalleCarretilla" Type="Self.detalleCarretilla" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="detalleCarretilla">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CarretillaModelStoreContainer">
+    <EntitySet Name="Carretilla" EntityType="Self.Carretilla" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="categoriaProducto" EntityType="Self.categoriaProducto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="detalleCarretilla" EntityType="Self.detalleCarretilla" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Producto__idCate__24927208" Association="Self.FK__Producto__idCate__24927208">
+      <End Role="categoriaProducto" EntitySet="categoriaProducto" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_carretilla" Association="Self.fk_carretilla">
+      <End Role="Carretilla" EntitySet="Carretilla" />
+      <End Role="detalleCarretilla" EntitySet="detalleCarretilla" />
+    </AssociationSet>
+    <AssociationSet Name="fk_productoCarretilla" Association="Self.fk_productoCarretilla">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="detalleCarretilla" EntitySet="detalleCarretilla" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

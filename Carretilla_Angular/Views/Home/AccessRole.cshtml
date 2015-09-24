@@ -1,0 +1,77 @@
+﻿<div>
+    <style>
+        th.ng-binding{
+            width: 225px;            
+        }
+    </style>
+    <form>
+        <div class="form-group">
+            <label for="cmbRoles">Roles</label>
+            <select class="form-control" ng-model="roleSelect" name="cmbRoles"  ng-change="getModulosRol(roleSelect);"
+                    id="cmbRoles" ng-options="rol.IdRol as rol.Nombre for rol in Roles">
+                <option value="">Seleccione un rol</option>
+                @*<option ng-repeat="rol in Roles" value="{{rol.IdRol}}">{{rol.Nombre}}</option>*@
+            </select>
+        </div>
+        @*<div class="form-group">
+            <label for="cmbModulos">Modulos</label>
+            <select class="form-control" ng-model="moduleSelect" name="cmbModulos"
+                    id="cmbModulos" ng-options="m.ModuloId as m.Nombre for m in Modulos"
+                    ng-change="getCaracteristicas(moduleSelect)">
+                <option value="">Seleccione un modulo</option>
+            </select>
+        </div>*@
+    </form>
+
+    <hr/>
+
+    
+
+    <div ng-show="Modulos.length > 0">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div ng-repeat="modulo in Modulos" class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" data-target="#module{{modulo.ModuloId}}"
+                           aria-expanded="false" aria-controls="module{{modulo.ModuloId}}" style="cursor:pointer">
+                            {{modulo.Nombre}}
+                        </a>
+                    </h4>
+                </div>
+                <div id="module{{modulo.ModuloId}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <table class="table">
+                            <thead>
+                                <tr >
+                                    <th>Caracteristicas {{modulo.Nombre}}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="car in CaracteristicasModulo">
+                                    <th style="vertical-align: middle;">{{car.Nombre}}</th>
+                                    <td>
+                                        <table>
+                                            <tr>
+                                                <td ng-repeat="derecho in car.Derechos">Derecho {{derecho.DerechoId}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td ng-repeat="dere in car.Derechos" style="text-align:center">
+                                                    <input ng-click="AddDerechoPermiso($event, car, dere)" type="checkbox" id="chk_car-{{car.CaracteristicaId}}_dere-{{dere.DerechoId}}" ng-checked="dere.Status" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+        <button class="btn btn-primary" ng-click="createJson()">Guardar</button>
+
+    </div>
+
+</div>

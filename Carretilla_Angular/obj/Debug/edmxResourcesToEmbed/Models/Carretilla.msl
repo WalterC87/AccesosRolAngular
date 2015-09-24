@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CarretillaModelStoreContainer" CdmEntityContainer="CarretillaEntities">
+    <EntitySetMapping Name="Carretilla">
+      <EntityTypeMapping TypeName="CarretillaModel.Carretilla">
+        <MappingFragment StoreEntitySet="Carretilla">
+          <ScalarProperty Name="idCarretilla" ColumnName="idCarretilla" />
+          <ScalarProperty Name="totalProductos" ColumnName="totalProductos" />
+          <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categoriaProducto">
+      <EntityTypeMapping TypeName="CarretillaModel.categoriaProducto">
+        <MappingFragment StoreEntitySet="categoriaProducto">
+          <ScalarProperty Name="idCategoriaProducto" ColumnName="idCategoriaProducto" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detalleCarretilla">
+      <EntityTypeMapping TypeName="CarretillaModel.detalleCarretilla">
+        <MappingFragment StoreEntitySet="detalleCarretilla">
+          <ScalarProperty Name="idDetalleCarretilla" ColumnName="idDetalleCarretilla" />
+          <ScalarProperty Name="idCarretilla" ColumnName="idCarretilla" />
+          <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Producto">
+      <EntityTypeMapping TypeName="CarretillaModel.Producto">
+        <MappingFragment StoreEntitySet="Producto">
+          <ScalarProperty Name="slug" ColumnName="slug" />
+          <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+          <ScalarProperty Name="idCategoriaProducto" ColumnName="idCategoriaProducto" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="precioQuetzales" ColumnName="precioQuetzales" />
+          <ScalarProperty Name="precioDolares" ColumnName="precioDolares" />
+          <ScalarProperty Name="Existencia" ColumnName="Existencia" />
+          <ScalarProperty Name="enPromocion" ColumnName="enPromocion" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

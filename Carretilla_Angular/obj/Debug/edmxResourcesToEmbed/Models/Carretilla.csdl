@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CarretillaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Carretilla">
+    <Key>
+      <PropertyRef Name="idCarretilla" />
+    </Key>
+    <Property Name="idCarretilla" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="totalProductos" Type="Int32" Nullable="false" />
+    <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="detalleCarretilla" Relationship="Self.fk_carretilla" FromRole="Carretilla" ToRole="detalleCarretilla" />
+  </EntityType>
+  <EntityType Name="categoriaProducto">
+    <Key>
+      <PropertyRef Name="idCategoriaProducto" />
+    </Key>
+    <Property Name="idCategoriaProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__idCate__1273C1CD" FromRole="categoriaProducto" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="detalleCarretilla">
+    <Key>
+      <PropertyRef Name="idDetalleCarretilla" />
+    </Key>
+    <Property Name="idDetalleCarretilla" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCarretilla" Type="Int32" Nullable="false" />
+    <Property Name="idProducto" Type="Int32" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Carretilla" Relationship="Self.fk_carretilla" FromRole="detalleCarretilla" ToRole="Carretilla" />
+    <NavigationProperty Name="Producto" Relationship="Self.fk_productoCarretilla" FromRole="detalleCarretilla" ToRole="Producto" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="idProducto" />
+    </Key>
+    <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCategoriaProducto" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="precioQuetzales" Type="Double" Nullable="false" />
+    <Property Name="precioDolares" Type="Double" Nullable="false" />
+    <Property Name="Existencia" Type="Int32" Nullable="false" />
+    <Property Name="enPromocion" Type="Boolean" Nullable="false" />
+    <Property Name="Estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="categoriaProducto" Relationship="Self.FK__Producto__idCate__1273C1CD" FromRole="Producto" ToRole="categoriaProducto" />
+    <NavigationProperty Name="detalleCarretilla" Relationship="Self.fk_productoCarretilla" FromRole="Producto" ToRole="detalleCarretilla" />
+    <Property Name="slug" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="fk_carretilla">
+    <End Role="Carretilla" Type="Self.Carretilla" Multiplicity="1" />
+    <End Role="detalleCarretilla" Type="Self.detalleCarretilla" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Carretilla">
+        <PropertyRef Name="idCarretilla" />
+      </Principal>
+      <Dependent Role="detalleCarretilla">
+        <PropertyRef Name="idCarretilla" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Producto__idCate__1273C1CD">
+    <End Role="categoriaProducto" Type="Self.categoriaProducto" Multiplicity="1" />
+    <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="categoriaProducto">
+        <PropertyRef Name="idCategoriaProducto" />
+      </Principal>
+      <Dependent Role="Producto">
+        <PropertyRef Name="idCategoriaProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_productoCarretilla">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="detalleCarretilla" Type="Self.detalleCarretilla" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="idProducto" />
+      </Principal>
+      <Dependent Role="detalleCarretilla">
+        <PropertyRef Name="idProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CarretillaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Carretilla" EntityType="Self.Carretilla" />
+    <EntitySet Name="categoriaProducto" EntityType="Self.categoriaProducto" />
+    <EntitySet Name="detalleCarretilla" EntityType="Self.detalleCarretilla" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <AssociationSet Name="fk_carretilla" Association="Self.fk_carretilla">
+      <End Role="Carretilla" EntitySet="Carretilla" />
+      <End Role="detalleCarretilla" EntitySet="detalleCarretilla" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Producto__idCate__1273C1CD" Association="Self.FK__Producto__idCate__1273C1CD">
+      <End Role="categoriaProducto" EntitySet="categoriaProducto" />
+      <End Role="Producto" EntitySet="Producto" />
+    </AssociationSet>
+    <AssociationSet Name="fk_productoCarretilla" Association="Self.fk_productoCarretilla">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="detalleCarretilla" EntitySet="detalleCarretilla" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

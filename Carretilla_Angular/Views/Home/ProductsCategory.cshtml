@@ -1,0 +1,12 @@
+﻿<br />
+<div class="row" ng-controller="ProductsCategoryController">
+    <h2>{{tituloCategoria}}</h2>
+    <div class="col-xs-6 col-lg-4" ng-repeat="producto in productos">
+        <h4>{{producto.Descripcion}}</h4>
+        <ul>
+            <li>Precio: Q {{producto.PrecioQuetzales}}</li>
+            <li><span class="categoria-{{producto.categoriaProducto}}">{{producto.categoriaProducto}}</span></li>
+        </ul>
+        <p><a class="btn btn-default" ng-click="ProductoDetalle(producto);" role="button">Ver m&aacute;s &raquo;</a></p>
+    </div>
+</div>

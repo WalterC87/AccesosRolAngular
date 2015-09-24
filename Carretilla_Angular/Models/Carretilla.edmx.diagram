@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8d7563598e2c4f81970dbe4680ad87c8" Name="Diagram1">
+        <EntityTypeShape EntityType="CarretillaModel.Carretilla" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarretillaModel.categoriaProducto" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarretillaModel.detalleCarretilla" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CarretillaModel.Producto" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="CarretillaModel.fk_carretilla" ManuallyRouted="false" />
+        <AssociationConnector Association="CarretillaModel.FK__Producto__idCate__1273C1CD" ManuallyRouted="false" />
+        <AssociationConnector Association="CarretillaModel.fk_productoCarretilla" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
