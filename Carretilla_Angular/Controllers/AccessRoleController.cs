@@ -834,5 +834,12 @@ namespace Carretilla_Angular.Controllers
 
             return ListAccesos;
         }
+    
+    
+        [ResponseType(typeof(AccesoRol))]
+        public IHttpActionResult PostAccesosRol(AccesoRol AccesosRol)
+        {
+            return null;
+        }
     }
 }

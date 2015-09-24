@@ -13,19 +13,9 @@
                 @*<option ng-repeat="rol in Roles" value="{{rol.IdRol}}">{{rol.Nombre}}</option>*@
             </select>
         </div>
-        @*<div class="form-group">
-            <label for="cmbModulos">Modulos</label>
-            <select class="form-control" ng-model="moduleSelect" name="cmbModulos"
-                    id="cmbModulos" ng-options="m.ModuloId as m.Nombre for m in Modulos"
-                    ng-change="getCaracteristicas(moduleSelect)">
-                <option value="">Seleccione un modulo</option>
-            </select>
-        </div>*@
     </form>
 
     <hr/>
-
-    
 
     <div ng-show="Modulos.length > 0">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -47,7 +37,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="car in CaracteristicasModulo">
+                                <tr ng-repeat="car in modulo.Caracteristicas">
                                     <th style="vertical-align: middle;">{{car.Nombre}}</th>
                                     <td>
                                         <table>
@@ -56,7 +46,7 @@
                                             </tr>
                                             <tr>
                                                 <td ng-repeat="dere in car.Derechos" style="text-align:center">
-                                                    <input ng-click="AddDerechoPermiso($event, car, dere)" type="checkbox" id="chk_car-{{car.CaracteristicaId}}_dere-{{dere.DerechoId}}" ng-checked="dere.Status" />
+                                                    <input ng-click="AddDerechoPermiso($event, modulo, car, dere)" type="checkbox" id="chk_car-{{car.CaracteristicaId}}_dere-{{dere.DerechoId}}" ng-checked="dere.Status" />
                                                 </td>
                                             </tr>
                                         </table>
