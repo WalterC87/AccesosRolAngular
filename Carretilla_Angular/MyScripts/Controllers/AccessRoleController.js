@@ -62,7 +62,23 @@
     $scope.postPermisosRol = function (permisosRol) {
         service.PostAccesosRol(permisosRol).then(
             function (data) {
-                $scope.message = data;
+                blockUI.start("saving data");
+
+                blockUI.done(function () {
+                    if (response == true) {
+                        $scope.textoMensaje = 'Registro Almacenado exitosamente';
+                        Notification.success({ message: $scope.textoMensaje, delay: 2000 });
+                        $scope.opSuccess = true;
+                    } else {
+                        $scope.opSuccess = false;
+                        $scope.textoMensaje = 'Oops hubo un problema al guardar el registro...';
+                        Notification.error({ message: $scope.textoMensaje, delay: 2000 });
+                    }
+                });
+
+                setTimeout(function () {
+                    blockUI.stop();
+                }, 1000);
             }
         )
     }

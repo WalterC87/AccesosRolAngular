@@ -13,10 +13,10 @@
     }
 
     this.PostAccesosRol = function (AccesosRol) {
-
+        var deferred = $q.defer();
         var res = $http.post(uri + '/PostAccesosRol/', AccesosRol)
         res.success(function (data, status, headers, config) {
-            deferred.resolve(response);
+            deferred.resolve(data);
         })
         res.error(function (data, status, header, config) {
             deferred.resolve(JSON.stringify({ error: data }));
