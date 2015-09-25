@@ -23,7 +23,7 @@ namespace Carretilla_Angular
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
-                      "~/Content/ui-notification.min.css",
+                      "~/Content/ui-notificacion.min.css",
                       "~/Content/block-ui.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
