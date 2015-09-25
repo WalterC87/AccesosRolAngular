@@ -1,5 +1,5 @@
 ﻿App.controller('AccessRoleController', function($scope, $http, $location, $window,
-                                                Notification, $modal, ShareData, AccessRoleService) {
+                                                Notification, $modal, ShareData, AccessRoleService, Notification, blockUI) {
 
     var service = AccessRoleService;
     var factory = ShareData;
@@ -61,8 +61,8 @@
 
     $scope.postPermisosRol = function (permisosRol) {
         service.PostAccesosRol(permisosRol).then(
-            function (data) {
-                blockUI.start("saving data");
+            function (response) {
+                blockUI.start("Guardando Accesos ...");
 
                 blockUI.done(function () {
                     if (response == true) {
