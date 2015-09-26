@@ -79,8 +79,6 @@
             }
         ]
 
-        console.log($scope.permisosRol); return false;
-
         service.PostAccesosRol($scope.permisosRol).then(
             function (response) {
                 blockUI.start("Guardando Accesos ...");
