@@ -45,8 +45,7 @@
 
     }
 
-    $scope.createJson = function () {
-        
+    $scope.postPermisosRol = function () {
         $scope.permisosRol = [
             {
                 RolId: $scope.roleSelect,
@@ -56,16 +55,12 @@
             }
         ]
 
-        $scope.postPermisosRol($scope.permisosRol);
-    }
-
-    $scope.postPermisosRol = function (permisosRol) {
-        service.PostAccesosRol(permisosRol).then(
+        service.PostAccesosRol($scope.permisosRol).then(
             function (response) {
                 blockUI.start("Guardando Accesos ...");
-
+                //console.log(response);
                 blockUI.done(function () {
-                    if (response == true) {
+                    if (response != null) {
                         $scope.textoMensaje = 'Registro Almacenado exitosamente';
                         Notification.success({ message: $scope.textoMensaje, delay: 2000 });
                         $scope.opSuccess = true;

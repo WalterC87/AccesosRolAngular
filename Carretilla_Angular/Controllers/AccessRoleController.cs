@@ -835,11 +835,12 @@ namespace Carretilla_Angular.Controllers
             return ListAccesos;
         }
     
-    
-        [ResponseType(typeof(AccesoRol))]
-        public async Task<IHttpActionResult> PostAccesosRol(AccesoRol AccesosRol)
+        [HttpPost]
+        //[ActionName("PostAccesosRol")]
+        //[ResponseType(typeof(AccesoRol))]
+        public AccesoRol PostAccesosRol(AccesoRol AccesosRol)
         {
-            return null;
+            return AccesosRol;
         }
     }
 }
