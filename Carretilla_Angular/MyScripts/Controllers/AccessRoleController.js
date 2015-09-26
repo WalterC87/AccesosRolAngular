@@ -37,12 +37,36 @@
 
                 if ($event.target.checked == true) {
                     dereCar[indexDere].Status = true;
+                    $scope.setCaracteristicaOtroModulo($event, caracteristica, derecho);
                 } else {
                     dereCar[indexDere].Status = false;
+                    $scope.setCaracteristicaOtroModulo($event, caracteristica, derecho);
                 }
             }
         }
 
+    }
+
+    $scope.setCaracteristicaOtroModulo = function ($event, caracteristica, derecho) {
+        for (var i = 0; i < $scope.Modulos.length; i++) {
+            var caracteristicas = $scope.Modulos[i].Caracteristicas;
+            for (var j = 0; j < caracteristicas.length; j++) {
+                var derechos = caracteristicas[j].Derechos;
+                if(caracteristicas[j].CaracteristicaId == caracteristica.CaracteristicaId){
+                    for(var d = 0; d < caracteristicas[j].Derechos.length; d++){
+                        if(derechos[d].DerechoId == derecho.DerechoId){
+                            if($event.target.checked == true){
+                                derechos[d].Status = true;
+                            }else{
+                                derechos[d].Status = false;
+                            }
+                        }
+                    }
+                }
+
+            }
+
+        }
     }
 
     $scope.postPermisosRol = function () {
@@ -54,6 +78,8 @@
                 Derechos: []
             }
         ]
+
+        console.log($scope.permisosRol); return false;
 
         service.PostAccesosRol($scope.permisosRol).then(
             function (response) {
