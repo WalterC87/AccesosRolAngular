@@ -7,10 +7,12 @@ App.factory('ShareData', function () {
 })
 
 App.config(['$routeProvider','$locationProvider', function ($routeProvider,$locationProvider) {
-    $routeProvider.when("/", {
+    $routeProvider.when("/AccesoRole", {
         templateUrl: "Home/AccessRole",
         controller: "AccessRoleController"
-    })
+    }).otherwise({
+        redirectTo: '/'
+    });
 
     //}).when("/newBook", {
     //    templateUrl: "Home/NewBook",
